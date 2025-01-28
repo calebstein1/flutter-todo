@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class ToDoTile extends StatelessWidget {
   final String taskName;
   final bool taskCompleted;
-  Function(bool?)? onChanged;
+  final Function(bool?)? onChanged;
 
-  ToDoTile({
+  const ToDoTile({
     super.key,
     required this.taskName,
     required this.taskCompleted,
@@ -27,11 +27,13 @@ class ToDoTile extends StatelessWidget {
             Checkbox(
               value: taskCompleted,
               onChanged: onChanged,
+              activeColor: Colors.black,
             ),
             Text(
               taskName,
               style: TextStyle(
-                color: Colors.grey[100],
+                color: taskCompleted ? Colors.grey[300] : Colors.grey[100],
+                decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none,
               )
             ),
           ],
