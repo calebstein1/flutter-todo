@@ -12,12 +12,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _controller = TextEditingController();
-  List _todoList = [
-    ["Go shopping", true],
-    ["Exercise", false],
-  ];
+  final List _todoList = [];
 
-  void checkBoxChanged(bool? value, int i) {
+  void checkBoxChanged(int i) {
     setState(() {
       _todoList[i][1] = !_todoList[i][1];
     });
@@ -48,6 +45,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void deleteTask(int i) {
+    setState(() {
+      _todoList.removeAt(i);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +74,8 @@ class _HomePageState extends State<HomePage> {
           return ToDoTile(
             taskName: _todoList[index][0],
             taskCompleted: _todoList[index][1],
-            onChanged: (value) => checkBoxChanged(value, index),
+            onChanged: (value) => checkBoxChanged(index),
+            deleteFunction: (context) => deleteTask(index),
           );
         },
       )
