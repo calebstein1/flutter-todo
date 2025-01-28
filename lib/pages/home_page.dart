@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/util/dialog_box.dart';
 
 import '../util/todo_tile.dart';
 
@@ -22,7 +23,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void createNewTask() {
-
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox();
+      }
+    );
   }
 
   @override
